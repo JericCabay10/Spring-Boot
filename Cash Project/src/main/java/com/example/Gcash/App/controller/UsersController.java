@@ -1,13 +1,12 @@
-// com/example/Gcash/App/controller/UsersController.java
 package com.example.Gcash.App.controller;
 
-import com.example.Gcash.App.model.*;
-import com.example.Gcash.App.operations.*;
-
+import com.example.Gcash.App.model.Account;
+import com.example.Gcash.App.operations.Create;
+import com.example.Gcash.App.operations.Read;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -24,9 +23,13 @@ public class UsersController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam String number, @RequestParam String pin, RedirectAttributes redirectAttrs) {
+    public String login(@RequestParam String number,
+                        @RequestParam String pin,
+                        RedirectAttributes redirectAttrs) {
+
         Account account = loginUser.userLogin(number, pin);
-        if(account != null) {
+
+        if (account != null) {
             redirectAttrs.addFlashAttribute("account", account);
             return "redirect:/content";
         } else {
@@ -34,6 +37,4 @@ public class UsersController {
             return "redirect:/";
         }
     }
-
-
 }

@@ -13,6 +13,7 @@ body {
     background-color: #1a73e8;
     padding: 10px 40px;
     color: white;
+    height: 10vh;
 }
 
 .navbar .logo {

@@ -11,15 +11,11 @@ public class WebController {
 
     @GetMapping("/")
     public String databaseController() {
-
-        Database conn = new Database();
-
-        if(Database.getConenction() != null) {
-            System.out.println("Connection successfull");
-        }else {
-            System.out.println("Connection Failed");
+        if (Database.getConenction() != null) {
+            System.out.println("Connection successful");
+        } else {
+            System.out.println("Connection failed");
         }
-
         return "login";
     }
 
@@ -38,11 +34,9 @@ public class WebController {
     public String gotoContent(Model model) {
         return "content";
     }
-    
-    /// /////////////////////////////////////////////
+
     @GetMapping("/setting")
     public String getContent() {
         return "settings";
     }
-
 }
