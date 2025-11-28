@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<body xmlns:th="http://www.w3.org/1999/xhtml">
+<div th:fragment="gcashNavbar">
+    <div class="navbar">
+        <div class="logo">GCash</div>
+        <div class="dropdown">
+            <button th:href="@{/content}">Home</button>
+            <button class="dropbtn">☰</button>
+            <div class="dropdown-content">
+                <a th:href="@{/setting}">Settings</a>
+                <a th:href="@{/logout}">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
