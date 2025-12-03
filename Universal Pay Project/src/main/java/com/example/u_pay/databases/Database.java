@@ -9,7 +9,9 @@ import java.sql.SQLException;
 @Component
 public class Database {
 
-    public static final String URL = "jdbc:mysql://b9v0ptitp6zosgzpjnid-mysql.services.clever-cloud.com:3306/b9v0ptitp6zosgzpjnid?useSSL=false&serverTimezone=UTC";
+    public static final String URL =
+        "jdbc:mysql://b9v0ptitp6zosgzpjnid-mysql.services.clever-cloud.com:3306/b9v0ptitp6zosgzpjnid?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+
 
     public static final String USERNAME = "uefzrfd6r1n8vwbq";
     public static final String PASSWORD = "CKNyRfbbP63TBrJWoLdk";
