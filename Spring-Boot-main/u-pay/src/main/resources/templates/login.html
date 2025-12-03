@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Pay Login</title>
+    <!-- Link to Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Link to custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="login-wrapper">
+    <div class="login-card">
+        <div class="logo">
+            <i class="fas fa-wallet"></i> E-Pay
+        </div>
+        <p class="sub-text">Secure Fast Digital Payment</p>
+
+        <form method="POST" action="/login">
+            <div class="input-group">
+                <i class="fas fa-phone"></i>
+                <input type="text" name="number" placeholder="Phone Number" required>
+            </div>
+
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="pin" placeholder="PIN" required>
+            </div>
+
+            <button type="submit">Login</button>
+
+            <p class="register">
+                Don't have an account? <a href="/register">Register</a>
+            </p>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

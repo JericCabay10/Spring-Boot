@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+    <link rel="stylesheet" th:href="@{/css/navbar.css}">
+    <title>E-Pay Dashboard</title>
+</head>
+
+<body>
+    <div th:replace="fragments/navbar :: navbar"></div>
+
+    <div class="home-container">
+    <div class="info">
+
+        <!-- Desktop Info -->
+        <div class="basic-info">
+            <h1 th:text="${account.accountFirstName + ' ' + account.accountLastName}"></h1>
+            <h2>Php: 10,000</h2>
+            <h3>Number: 09123456789</h3>
+            <span>Date: 03/01/1999</span>
+        </div>
+
+        <!-- Visa Card -->
+        <div class="visa-card">
+            <div class="card-content">
+                <div class="card-chip"></div>
+                <div class="card-bank">E-Pay Bank</div>
+                <h2 th:text="${account.accountId.substring(0,4) + ' ' +
+                    account.accountId.substring(4,8) + ' ' +
+                    account.accountId.substring(8,12) + ' ' +
+                    account.accountId.substring(12,16)}"></h2>
+                <div class="card-info">
+                    <span class="card-holder">Jhon Doe</span>
+                    <span class="card-exp">Valid: 01/24 - 01/28</span>
+                </div>
+                <!-- Mobile Info moved here -->
+                <div class="card-mobile-info">
+                    <p>Name: Jhon Doe</p>
+                    <p>Balance: Php 10,000</p>
+                    <p>Number: 09123456789</p>
+                    <p>Date: 03/01/1999</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+    <script th:src="@{/js/navbar.js}"></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+}
+
+.home-container {
+    height: 40vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+    gap: 20px;
+}
+
+.info {
+    display: flex;
+    width: 90%;
+    border-radius: 8px;
+    overflow: hidden;
+    gap: 20px;
+}
+
+/* Desktop: Basic Info */
+.basic-info {
+    width: 50%;
+    background: #fff;
+    padding: 25px 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.basic-info:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+}
+
+/* Visa Card */
+.visa-card {
+    width: 50%;
+    border-radius: 20px;
+    background: #2a9b3d;
+    background: linear-gradient(90deg,rgba(42, 155, 61, 1) 0%, rgba(89, 87, 199, 1) 78%);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    overflow: hidden;
+    position: relative;
+    color: white;
+    font-family: "Poppins", sans-serif;
+    transition: transform .25s;
+}
+
+.visa-card:hover { transform: scale(1.03); }
+
+.visa-card::before {
+    content: "";
+    position: absolute;
+    top: -40%;
+    left: -30%;
+    width: 160%;
+    height: 160%;
+    background: rgba(255,255,255,0.15);
+    transform: rotate(25deg);
+    filter: blur(8px);
+}
+
+.card-content { position: relative; padding: 25px; z-index: 5; }
+.card-chip { width: 45px; height: 35px; background: gold; border-radius: 8px; margin-bottom: 18px; box-shadow: 0 0 8px rgba(255,215,0,.6); }
+.card-bank { font-size: 18px; letter-spacing: 1px; margin-bottom: 15px; }
+.card-number { font-size: 20px; font-weight: bold; letter-spacing: 3px; margin-bottom: 25px; }
+.card-info { display: flex; justify-content: space-between; font-weight: 600; }
+
+.card-mobile-info { display: none; margin-top: 18px; font-size: 15px; line-height: 1.4rem; }
+
+/* MOBILE */
+@media screen and (max-width: 600px) {
+    .home-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .basic-info { display: none; } /* Hide basic info on mobile */
+    .visa-card {
+        width: 90%;
+        height: auto;
+    }
+
+    .card-number,
+    .card-exp { display: none; }
+
+    .card-info { flex-direction: column; gap: 6px; }
+
+    .card-mobile-info { display: block; text-align: center; }
+}

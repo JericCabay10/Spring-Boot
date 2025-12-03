@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Pay Register</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="login-wrapper">
+    <div class="login-card">
+        <div class="logo">
+            <i class="fas fa-wallet"></i> E-Pay
+        </div>
+        <p class="sub-text">Create your account</p>
+
+        <form action="#" th:action="@{/register}" method="POST" th:object="${account}">
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" th:field="*{accountFirstName}" placeholder="First Name" required>
+            </div>
+
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" th:field="*{accountLastName}" placeholder="Last Name" required>
+            </div>
+
+            <div class="input-group">
+                <i class="fas fa-envelope"></i>
+                <input type="email" th:field="*{accountEmail}" placeholder="Email Address" required>
+            </div>
+
+            <div class="input-group">
+                <i class="fas fa-phone"></i>
+                <input type="number" th:field="*{accountNumber}" placeholder="Phone Number" required>
+            </div>
+
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" th:field="*{accountPin}"  placeholder="PIN" required>
+            </div>
+
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="number" placeholder="Confirm PIN" required>
+            </div>
+
+            <button type="submit">Register</button>
+
+            <p class="register">
+                Already have an account? <a th:href="@{/login}">Login</a>
+            </p>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
+    
