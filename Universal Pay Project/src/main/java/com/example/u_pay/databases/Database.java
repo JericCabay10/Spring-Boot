@@ -8,23 +8,19 @@ import java.sql.SQLException;
 
 @Component
 public class Database {
-
-    public static final String URL =
-        "jdbc:mysql://b9v0ptitp6zosgzpjnid-mysql.services.clever-cloud.com:3306/b9v0ptitp6zosgzpjnid?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
-
-
-    public static final String USERNAME = "uefzrfd6r1n8vwbq";
-    public static final String PASSWORD = "CKNyRfbbP63TBrJWoLdk";
+    public static final String URL = "jdbc:mysql://localhost/upay";
+    public static final String USERNAME = "root";
+    public static final String PASSWORD = "123456789";
 
     public static Connection getConnection() {
         Connection conn = null;
 
-        try {
+        try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         } catch (SQLException db) {
             System.out.println("Database error: " + db.getMessage());
-        } catch (Exception e) {
+        }catch (Exception e) {
             System.out.println("General error: " + e.getMessage());
         }
 
