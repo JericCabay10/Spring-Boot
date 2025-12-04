@@ -15,6 +15,7 @@ public class Account {
     private int accountPin;
 
     public Account(String accountId, String accountFirstName, String accountLastName, String accountEmail, String accountNumber, int accountPin) {
+        this.accountId = accountId;        // <- ADD THIS
         this.accountFirstName = accountFirstName;
         this.accountLastName = accountLastName;
         this.accountEmail = accountEmail;
@@ -73,4 +74,6 @@ public class Account {
     public int getAccountPin() {
         return this.accountPin;
     }
+
+
 }
