@@ -1,12 +1,11 @@
 package com.example.u_pay.controller;
 
 import com.example.u_pay.model.Account;
-import com.example.u_pay.operations.Create;
-import com.example.u_pay.operations.Read;
-import com.example.u_pay.operations.Update;
-import com.example.u_pay.operations.View;
+import com.example.u_pay.model.Money;
+import com.example.u_pay.operations.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -84,4 +83,37 @@ public class PostMappingController {
 
         return "redirect:/settings";
     }
+
+    @PostMapping("/cash-in")
+    public String cashInMoney(@RequestParam("amount") double amount,
+                              HttpSession session,
+                              RedirectAttributes redirectAttrs) {
+
+        // Get logged-in account
+        Money account = (Money) session.getAttribute("account");
+        if (account == null) {
+            redirectAttrs.addFlashAttribute("error", "You must login first!");
+            return "redirect:/";
+        }
+
+        if (amount <= 0) {
+            redirectAttrs.addFlashAttribute("error", "Amount must be greater than 0!");
+            return "redirect:/home";
+        }
+
+        boolean success = Transaction.cashIn(account.getAccountNumber(), amount);
+
+        if (success) {
+            // Update session with new savings
+            account.setSavingAccount(account.getSavingAccount() + amount);
+            session.setAttribute("account", account);
+
+            redirectAttrs.addFlashAttribute("success", "Cash in successful! Amount added: " + amount);
+        } else {
+            redirectAttrs.addFlashAttribute("error", "Failed to cash in. Try again.");
+        }
+
+        return "redirect:/home";
+    }
+
 }

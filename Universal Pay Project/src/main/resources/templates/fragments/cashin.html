@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Cash in</title>
+</head>
+<!-- Transaction Button -->
+<button id="openFormBtn" class="btn-csh">Transaction</button>
+
+<!-- Modal Overlay -->
+<div id="formOverlay" class="overlay">
+    <div class="modal-box">
+        <span id="closeFormBtn" class="close-btn">&times;</span>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name"><br><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email"><br><br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+<body>
+<script th:src="@{/js/transparent.js}"></script>
+</body>
+</html>
