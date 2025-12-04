@@ -84,14 +84,16 @@ public class PostMappingController {
         return "redirect:/settings";
     }
 
-    @PostMapping("/cash-in")
-    public String cashInMoney(@RequestParam("amount") double amount,
-                              HttpSession session,
-                              RedirectAttributes redirectAttrs) {
-
+    @PostMapping("/transfer-money")
+    public String transferMoney(
+            @RequestParam("tonumber") String toNumber,
+            @RequestParam("amount") double amount,
+            HttpSession session,
+            RedirectAttributes redirectAttrs
+    ) {
         // Get logged-in account
-        Money account = (Money) session.getAttribute("account");
-        if (account == null) {
+        Money fromAccount = (Money) session.getAttribute("account");
+        if (fromAccount == null) {
             redirectAttrs.addFlashAttribute("error", "You must login first!");
             return "redirect:/";
         }
@@ -101,16 +103,22 @@ public class PostMappingController {
             return "redirect:/home";
         }
 
-        boolean success = Transaction.cashIn(account.getAccountNumber(), amount);
+        // Prevent transferring to self
+        if (fromAccount.getAccountNumber().equals(toNumber)) {
+            redirectAttrs.addFlashAttribute("error", "You cannot transfer to your own account.");
+            return "redirect:/home";
+        }
+
+        boolean success = Transaction.transferMoney(fromAccount.getAccountNumber(), toNumber, amount);
 
         if (success) {
-            // Update session with new savings
-            account.setSavingAccount(account.getSavingAccount() + amount);
-            session.setAttribute("account", account);
+            // Update session balance
+            fromAccount.setSavingAccount(fromAccount.getSavingAccount() - amount);
+            session.setAttribute("account", fromAccount);
 
-            redirectAttrs.addFlashAttribute("success", "Cash in successful! Amount added: " + amount);
+            redirectAttrs.addFlashAttribute("success", "Transfer successful! Amount sent: " + amount);
         } else {
-            redirectAttrs.addFlashAttribute("error", "Failed to cash in. Try again.");
+            redirectAttrs.addFlashAttribute("error", "Transfer failed. Check balance or recipient number.");
         }
 
         return "redirect:/home";
