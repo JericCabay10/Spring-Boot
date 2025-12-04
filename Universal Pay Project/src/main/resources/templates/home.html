@@ -6,20 +6,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" th:href="@{/css/home.css}">
     <link rel="stylesheet" th:href="@{/css/navbar.css}">
+    <link rel="stylesheet" th:href="@{/css/transactionStyle.css}">
     <title>E-Pay Dashboard</title>
 </head>
 
 <body>
-    <div th:replace="fragments/navbar :: navbar"></div>
+<!-- Navbar -->
+<div th:replace="fragments/navbar :: navbar"></div>
 
-    <div class="home-container">
+<!-- Main Content -->
+<div class="home-container">
     <div class="info">
-
         <!-- Desktop Info -->
         <div class="basic-info">
             <h1 th:text="${account.accountFirstName + ' ' + account.accountLastName}"></h1>
             <h2 th:text="${account.savingAccount}"></h2>
-            <h3>Number: 09123456789</h3>
+            <h3 th:text="${account.accountNumber}"></h3>
             <span>Date: 03/01/1999</span>
         </div>
 
@@ -29,21 +31,20 @@
                 <div class="card-chip"></div>
                 <div class="card-bank">E-Pay Bank</div>
                 <h2 th:text="${account.accountId != null ?
-                    account.accountId.substring(0,4) + ' ' +
-                    account.accountId.substring(4,8) + ' ' +
-                    account.accountId.substring(8,12) + ' ' +
-                    account.accountId.substring(12,16)
-                    : 'XXXX XXXX XXXX XXXX'}">
+                        account.accountId.substring(0,4) + ' ' +
+                        account.accountId.substring(4,8) + ' ' +
+                        account.accountId.substring(8,12) + ' ' +
+                        account.accountId.substring(12,16)
+                        : 'XXXX XXXX XXXX XXXX'}">
                 </h2>
                 <div class="card-info">
-                    <span class="card-holder">Jhon Doe</span>
+                    <span class="card-holder" th:text="${account.accountFirstName} + ' ' + ${account.accountLastName}">Jhon Doe</span>
                     <span class="card-exp">Valid: 01/24 - 01/28</span>
                 </div>
-                <!-- Mobile Info moved here -->
                 <div class="card-mobile-info">
-                    <p>Name: Jhon Doe</p>
-                    <p>Balance: Php 10,000</p>
-                    <p>Number: 09123456789</p>
+                    <p>Name: <span th:text="${account.accountFirstName} + ' ' + ${account.accountLastName}">Jhon Doe</span></p>
+                    <p>Balance: Php <span th:text="${account.savingAccount}">10,000</span></p>
+                    <p>Number: <span th:text="${account.accountNumber}">09123456789</span></p>
                     <p>Date: 03/01/1999</p>
                 </div>
             </div>
@@ -51,8 +52,15 @@
     </div>
 </div>
 
+<!-- Transaction Button -->
+<div class="trans">
+    <button class="btn-csh" onclick="showCashModal()">Transaction</button>
+    <!-- Include Thymeleaf fragment for modal -->
+    <div th:replace="fragments/transaction :: transactionModal"></div>
 </div>
 
-    <script th:src="@{/js/navbar.js}"></script>
+<!-- Scripts -->
+<script th:src="@{/js/transactionModal.js}"></script>
+<script th:src="@{/js/navbar.js}"></script>
 </body>
 </html>
