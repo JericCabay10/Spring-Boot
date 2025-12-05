@@ -124,4 +124,36 @@ public class PostMappingController {
         return "redirect:/home";
     }
 
+    //Cash in function
+    @PostMapping("/cash-in")
+    public String cashInMoney(@RequestParam("amounts") double amount,
+                              HttpSession session,
+                              RedirectAttributes redirectAttrs) {
+
+        // Get logged-in account
+        Money account = (Money) session.getAttribute("account");
+        if (account == null) {
+            redirectAttrs.addFlashAttribute("error", "You must login first!");
+            return "redirect:/";
+        }
+
+        if (amount <= 0) {
+            redirectAttrs.addFlashAttribute("error", "Amount must be greater than 0!");
+            return "redirect:/home";
+        }
+
+        boolean success = Transaction.cashIn(account.getAccountNumber(), amount);
+
+        if (success) {
+            // Update session with new savings
+            account.setSavingAccount(account.getSavingAccount() + amount);
+            session.setAttribute("account", account);
+
+            redirectAttrs.addFlashAttribute("success", "Cash in successful! Amount added: " + amount);
+        } else {
+            redirectAttrs.addFlashAttribute("error", "Failed to cash in. Try again.");
+        }
+
+        return "redirect:/home";
+    }
 }

@@ -53,9 +53,11 @@
 
 <!-- Transaction Button -->
 <div class="trans">
-    <button class="btn-csh"  id="openFormBtn">Transaction</button>
+    <button class="btn-csh"  id="openFormBtn">Transfer Money</button>
+    <button class="btn-csh"  id="openCshInBtn">Cash in</button>
 </div>
 
+<!--Transfer Money-->
 <div id="formOverlay" class="overlay">
     <div class="modal-box">
         <span id="closeFormBtn" class="close-btn">&times;</span>
@@ -77,6 +79,23 @@
     </div>
 </div>
 
+<!--Cash In-->
+<div id="cshInOverlay" class="overlay">
+    <div class="modal-box">-->
+        <span id="cshInClose" class="close-btn">&times;</span>
+        <h1>Cash In</h1>
+
+                <!-- Flash messages -->
+        <div th:if="${success}" style="color: green;">[[${success}]]</div>
+        <div th:if="${error}" style="color: red;">[[${error}]]</div>
+
+        <form th:action="@{/cash-in}" method="post">
+            <label for="amounts">Amount</label>
+            <input type="number" id="amounts" name="amounts" min="1" required><br><br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>
 
 
 <!-- Scripts -->
@@ -84,3 +103,5 @@
 <script th:src="@{/js/transparent.js}"></script>
 </body>
 </html>
+
+
