@@ -31,3 +31,5 @@ CREATE TABLE viewTransactions(
     transferToId VARCHAR(16),
     transferFromId VARCHAR(16)
 );
+
+SELECT * FROM viewTransactions;
