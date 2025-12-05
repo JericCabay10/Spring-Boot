@@ -1,31 +1,37 @@
+/* ===========================
+   GLOBAL STYLES
+   =========================== */
 body {
-    padding: 0;
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    background: linear-gradient(135deg, #4facfe, #00f2fe);
     font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
 }
 
-/* Home container */
+/* ===========================
+   HOME CONTAINER
+   =========================== */
 .home-container {
-    height: 40vh;
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-top: 5%;
     gap: 20px;
+    margin-top: 5%;
+    height: 40vh;
 }
 
 .info {
     display: flex;
     width: 90%;
+    gap: 20px;
     border-radius: 8px;
     overflow: hidden;
-    gap: 20px;
 }
 
-/* Desktop: Basic Info */
+/* ===========================
+   BASIC INFO CARD
+   =========================== */
 .basic-info {
     width: 50%;
     background: #fff;
@@ -40,7 +46,9 @@ body {
     box-shadow: 0 10px 25px rgba(0,0,0,0.18);
 }
 
-/* Visa Card */
+/* ===========================
+   VISA CARD
+   =========================== */
 .visa-card {
     width: 50%;
     border-radius: 20px;
@@ -49,7 +57,7 @@ body {
     overflow: hidden;
     position: relative;
     color: white;
-    transition: transform .25s;
+    transition: transform 0.25s;
 }
 
 .visa-card:hover {
@@ -109,17 +117,24 @@ body {
     line-height: 1.4rem;
 }
 
+/* ===========================
+   TRANSACTION BUTTONS
+   =========================== */
 .trans {
     border: 1px solid black;
     padding: 15px;
+    text-align: center;
 }
 
 .btn-csh {
     padding: 13px;
     border-radius: 8px;
+    cursor: pointer;
 }
 
-/* Overlay modal */
+/* ===========================
+   MODAL OVERLAY
+   =========================== */
 .overlay {
     position: fixed;
     top: 0; left: 0;
@@ -165,191 +180,114 @@ body {
     color: white;
     border: none;
     cursor: pointer;
+    transition: background 0.25s;
 }
 
 .modal-box form button:hover {
     background-color: #00f2fe;
 }
 
-/* Fade animation */
+/* ===========================
+   ANIMATIONS
+   =========================== */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-20px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* MOBILE */
-@media screen and (max-width: 600px) {
-    .home-container {
-        flex-direction: column;
-        align-items: center;
-    }
+/* ===========================
+   TRANSACTION LOG TABLE
+   =========================== */
+.transaction-log {
+    width: 90%;
+    margin: 40px auto;
+    background: white;
+    padding: 20px 25px;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    animation: fadeIn 0.4s ease-in-out;
+}
 
-    .basic-info {
-        display: none; /* Hide basic info on mobile */
-    }
+.transaction-log h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+    letter-spacing: 1px;
+}
 
-    .visa-card {
-        width: 90%;
-        height: auto;
-    }
+.transaction-log table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
 
-    .card-number,
-    .card-exp {
-        display: none;
-    }
+.transaction-log thead {
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    color: white;
+}
 
-    .card-info {
-        flex-direction: column;
-        gap: 6px;
-    }
+.transaction-log th,
+.transaction-log td {
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 14px;
+}
 
-    .card-mobile-info {
-        display: block;
-        text-align: center;
-    }/* GENERAL STYLES */
-     body {
-         padding: 0;
-         margin: 0;
-         box-sizing: border-box;
-         background: linear-gradient(135deg, #4facfe, #00f2fe);
-         font-family: "Poppins", sans-serif;
-     }
+.transaction-log tbody {
+    display: block;
+    max-height: 250px; /* Show ~5 rows */
+    overflow-y: auto;
+}
 
-     /* Home container */
-     .home-container {
-         height: 40vh;
-         display: flex;
-         flex-direction: row;
-         justify-content: center;
-         align-items: center;
-         margin-top: 5%;
-         gap: 20px;
-     }
+.transaction-log thead,
+.transaction-log tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
 
-     .info {
-         display: flex;
-         width: 90%;
-         border-radius: 8px;
-         overflow: hidden;
-         gap: 20px;
-     }
+.transaction-log tbody tr:nth-child(even) {
+    background: #f7faff;
+}
 
-     /* Desktop: Basic Info */
-     .basic-info {
-         width: 50%;
-         background: #fff;
-         padding: 25px 20px;
-         border-radius: 12px;
-         box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-         transition: transform 0.25s, box-shadow 0.25s;
-     }
+.transaction-log tbody tr:hover {
+    background: rgba(0, 242, 254, 0.16);
+}
 
-     .basic-info:hover {
-         transform: translateY(-3px);
-         box-shadow: 0 10px 25px rgba(0,0,0,0.18);
-     }
+.transaction-log td span {
+    font-weight: 600;
+}
 
-     /* Visa Card */
-     .visa-card {
-         width: 50%;
-         border-radius: 20px;
-         background: linear-gradient(90deg, rgba(42,155,61,1) 0%, rgba(89,87,199,1) 78%);
-         box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-         overflow: hidden;
-         position: relative;
-         color: white;
-         transition: transform .25s;
-     }
+.transaction-log .amount-positive { color: #0abf34; }
+.transaction-log .amount-negative { color: #ff3b3b; }
+.transaction-log .amount-transfer { color: #007BFF; }
 
-     .visa-card:hover {
-         transform: scale(1.03);
-     }
+/* Scrollbar design */
+.transaction-log tbody::-webkit-scrollbar {
+    width: 8px;
+}
 
-     .visa-card::before {
-         content: "";
-         position: absolute;
-         top: -40%;
-         left: -30%;
-         width: 160%;
-         height: 160%;
-         background: rgba(255,255,255,0.15);
-         transform: rotate(25deg);
-         filter: blur(8px);
-     }
+.transaction-log tbody::-webkit-scrollbar-thumb {
+    background: #4facfe;
+    border-radius: 10px;
+}
 
-     .card-content {
-         position: relative;
-         padding: 25px;
-         z-index: 5;
-     }
+.transaction-log tbody::-webkit-scrollbar-thumb:hover {
+    background: #00c8ff;
+}
 
-     .card-chip {
-         width: 45px;
-         height: 35px;
-         background: gold;
-         border-radius: 8px;
-         margin-bottom: 18px;
-         box-shadow: 0 0 8px rgba(255,215,0,0.6);
-     }
-
-     .card-bank { font-size: 18px; letter-spacing: 1px; margin-bottom: 15px; }
-     .card-number { font-size: 20px; font-weight: bold; letter-spacing: 3px; margin-bottom: 25px; }
-     .card-info { display: flex; justify-content: space-between; font-weight: 600; }
-     .card-mobile-info { display: none; margin-top: 18px; font-size: 15px; line-height: 1.4rem; }
-
-     /* Transaction button */
-     .trans { border: 1px solid black; padding: 15px; }
-     .btn-csh { padding: 13px; border-radius: 8px; }
-
-     /* Overlay modal */
-     .overlay {
-         position: fixed;
-         top: 0; left: 0;
-         width: 100vw; height: 100vh;
-         background: rgba(0,0,0,0.5);
-         backdrop-filter: blur(3px);
-         display: none;
-         justify-content: center;
-         align-items: center;
-         z-index: 2000;
-     }
-
-     .modal-box {
-         background: white;
-         padding: 20px;
-         width: 350px;
-         max-width: 90%;
-         border-radius: 12px;
-         box-shadow: 0 0 15px rgba(0,0,0,0.4);
-         animation: fadeIn 0.2s ease-in-out;
-         position: relative;
-     }
-
-     .modal-box .close-btn {
-         position: absolute;
-         top: 10px; right: 15px;
-         font-size: 18px;
-         cursor: pointer;
-     }
-
-     @keyframes fadeIn {
-         from { opacity: 0; transform: translateY(-20px); }
-         to { opacity: 1; transform: translateY(0); }
-     }
-
-     /* MOBILE */
-     @media screen and (max-width: 600px) {
-         .home-container { flex-direction: column; align-items: center; }
-         .basic-info { display: none; }
-         .visa-card { width: 90%; height: auto; }
-         .card-number, .card-exp { display: none; }
-         .card-info { flex-direction: column; gap: 6px; }
-         .card-mobile-info { display: block; text-align: center; }
-         .modal-box { width: 90%; }
-     }
-
-
-    .modal-box {
-        width: 90%;
-    }
+/* ===========================
+   RESPONSIVE
+   =========================== */
+@media screen and (max-width: 650px) {
+    .home-container { flex-direction: column; align-items: center; }
+    .basic-info { display: none; }
+    .visa-card { width: 90%; }
+    .card-number, .card-exp { display: none; }
+    .card-info { flex-direction: column; gap: 6px; }
+    .card-mobile-info { display: block; text-align: center; }
+    .modal-box { width: 90%; }
+    .transaction-log { padding: 15px; }
+    .transaction-log th, .transaction-log td { padding: 10px; font-size: 13px; }
 }

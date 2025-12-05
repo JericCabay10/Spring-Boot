@@ -22,12 +22,12 @@ CREATE TABLE user_savings(
 
 SELECT * FROM user_savings;
 
-CREATE TABLE transactions(
-	id INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE viewTransactions(
+    id INT PRIMARY KEY AUTO_INCREMENT,
     amount DOUBLE,
     name VARCHAR(255),
     accountId VARCHAR(16),
-    dates DATE, 
+    dates DATE,
     transferToId VARCHAR(16),
     transferFromId VARCHAR(16)
 );

@@ -81,11 +81,10 @@
 
 <!--Cash In-->
 <div id="cshInOverlay" class="overlay">
-    <div class="modal-box">-->
+    <div class="modal-box">
         <span id="cshInClose" class="close-btn">&times;</span>
         <h1>Cash In</h1>
 
-                <!-- Flash messages -->
         <div th:if="${success}" style="color: green;">[[${success}]]</div>
         <div th:if="${error}" style="color: red;">[[${error}]]</div>
 
@@ -97,6 +96,30 @@
     </div>
 </div>
 
+<div class="transaction-log">
+    <h2>Transaction History</h2>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>From</th>
+            <th>To</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="log : ${logs}">
+            <td th:text="${log.name}"></td>
+            <td>₱ <span th:text="${log.amount}"></span></td>
+            <td th:text="${log.dates}"></td>
+            <td th:text="${log.transferFromId != null ? log.transferFromId : '---'}"></td>
+            <td th:text="${log.transferToId != null ? log.transferToId : '---'}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
 <!-- Scripts -->
 <script th:src="@{/js/navbar.js}"></script>

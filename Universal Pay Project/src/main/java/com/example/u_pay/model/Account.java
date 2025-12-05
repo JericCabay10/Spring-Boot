@@ -3,9 +3,11 @@ package com.example.u_pay.model;
 
 
 import com.example.u_pay.utils.IdGenerators;
+import org.springframework.stereotype.Repository;
 
 import java.util.Random;
 
+@Repository
 public class Account {
     private String accountId;
     private String accountFirstName;

@@ -1,13 +1,25 @@
 package com.example.u_pay.controller;
 
 import com.example.u_pay.model.Account;
+import com.example.u_pay.model.ViewTransaction;
+import com.example.u_pay.repository.TransactionRepository;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.List;
+
 @Controller
 public class GetMappingController {
+
+    @Autowired
+    private Account account;
+
+    @Autowired
+    private TransactionRepository transactionRepository;
+
 
     // Login page
     @GetMapping("/")
@@ -15,17 +27,28 @@ public class GetMappingController {
         return "login"; // login.html
     }
 
-    // Home/dashboard page
     @GetMapping("/home")
-    public String getHomeHtml(HttpSession session, Model model) {
+    public String home(HttpSession session, Model model) {
+
         Account account = (Account) session.getAttribute("account");
-        if (account != null) {
-            model.addAttribute("account", account);
-            return "home";
-        } else {
-            return "redirect:/"; // redirect to login if not logged in
+
+        if (account == null) {
+            return "redirect:/";
         }
+
+        // 🔥 FIX: use the ACCOUNT NUMBER (this is what your DB saves in accountId column)
+        String idToSearch = account.getAccountNumber();
+
+        // Get logs
+        List<ViewTransaction> logs = transactionRepository.findByAccountId(idToSearch);
+
+        // Send to HTML
+        model.addAttribute("account", account);
+        model.addAttribute("logs", logs);
+
+        return "home";
     }
+
 
     // Register page
     @GetMapping("/register")
