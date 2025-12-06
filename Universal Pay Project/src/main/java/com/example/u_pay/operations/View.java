@@ -33,7 +33,7 @@ public class View {
                         rs.getString("email"),
                         rs.getString("number"),
                         rs.getInt("pin"),
-                        rs.getDouble("savings") // savings from user_savings table
+                        rs.getDouble("savings")
                 );
 
                 return money;

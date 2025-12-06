@@ -17,7 +17,7 @@ public class Read {
             stmt.setInt(2, pin);
 
             ResultSet rs = stmt.executeQuery();
-            return rs.next(); // true if number+pin matches
+            return rs.next();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
