@@ -47,13 +47,12 @@ public class Transaction {
 
             conn.commit();
 
-            // SAVE TRANSACTION
             save(
                     "Transfer",
                     fromNumber,
                     amount,
-                    fromNumber, // transferFromId
-                    toNumber    // transferToId
+                    fromNumber,
+                    toNumber
             );
 
             return true;
@@ -83,8 +82,8 @@ public class Transaction {
                         "Cash In",
                         accountNumber,
                         amount,
-                        null,          // transferFromId
-                        accountNumber  // transferToId
+                        null,
+                        accountNumber
                 );
 
                 return true;
@@ -98,7 +97,7 @@ public class Transaction {
         }
     }
 
-    //Transaction logger
+
     public static void save(String name, String accountId, double amount,
                             String transferFromId, String transferToId) {
 
@@ -121,5 +120,4 @@ public class Transaction {
             e.printStackTrace();
         }
     }
-
 }

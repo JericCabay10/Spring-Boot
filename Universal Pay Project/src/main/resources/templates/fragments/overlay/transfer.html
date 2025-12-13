@@ -1,0 +1,28 @@
+<!--Transfer Money-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="transferOverlay">
+    <div id="transferOverlay" class="overlay">
+        <div class="modal-box">
+            <span id="close" class="close-btn">&times;</span>
+            <h1>Transfer Money</h1>
+
+            <!-- Flash messages -->
+            <div th:if="${success}" style="color: green;">[[${success}]]</div>
+            <div th:if="${error}" style="color: red;">[[${error}]]</div>
+
+            <form th:action="@{/transfer-money}" method="post">
+                <label for="tonumber">Recipient Number</label>
+                <input type="text" id="tonumber" name="tonumber" required><br><br>
+
+                <label for="amount">Amount</label>
+                <input type="number" id="amount" name="amount" min="1" required><br><br>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

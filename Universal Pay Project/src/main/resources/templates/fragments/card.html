@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="card">
+    <div class="home-container">
+        <div class="info">
+            <!-- Desktop Info -->
+            <div class="card-wrapper">
+                <!-- LEFT INFO CARD -->
+                <div class="info-card">
+                    <p><strong>Name:</strong> <span th:text="${account.accountFirstName + ' ' + account.accountLastName}"></span></p>
+                    <p><strong>E-cash:</strong> <span th:text="${account.savingAccount}"></span></p>
+                    <p><strong>Number:</strong> <span th:text="${account.accountNumber}"></span></p>
+                    <small><strong>Account created:</strong> 01/01/1999</small>
+                </div>
+
+                <!-- RIGHT EPAY CARD -->
+                <div class="epay-card">
+                    <div class="chip"></div>
+                    <div class="card-title">E-Pay</div>
+                    <div class="card-number" th:text="${account.accountId != null ?
+                        account.accountId.substring(0,4) + ' ' +
+                        account.accountId.substring(4,8) + ' ' +
+                        account.accountId.substring(8,12) + ' ' +
+                        account.accountId.substring(12,16)
+                        : 'XXXX XXXX XXXX XXXX'}">
+                    </div>
+                    <div class="card-footer">
+                        <div class="card-name" th:text="${account.accountFirstName + ' ' + account.accountLastName}"></div>
+                        <div class="card-dates">
+                            <div>01/01/2025</div>
+                            <div>12/01</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

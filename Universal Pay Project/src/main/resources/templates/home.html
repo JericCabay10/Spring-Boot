@@ -6,125 +6,42 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" th:href="@{/css/home.css}">
     <link rel="stylesheet" th:href="@{/css/navbar.css}">
+    <link rel="stylesheet" th:href="@{/css/card.css}">
+    <link rel="stylesheet" th:href="@{/css/transactionBtn.css}">
+    <link rel="stylesheet" th:href="@{/css/overlay.css}">
     <title>E-Pay Dashboard</title>
 </head>
 
 <body>
-<!-- Navbar -->
-<div th:replace="fragments/navbar :: navbar"></div>
+<div class="container">
+    <header>
+        <div class="navbar-section">
+            <div th:replace="fragments/navbar :: navbar"></div>
+        </div>
+    </header>
 
-<!-- Main Content -->
-<div class="home-container">
-    <div class="info">
-        <!-- Desktop Info -->
-        <div class="basic-info">
-            <h1 th:text="${account.accountFirstName + ' ' + account.accountLastName}"></h1>
-            <h2 th:text="${account.savingAccount}"></h2>
-            <h3 th:text="${account.accountNumber}"></h3>
-            <span>Date: 03/01/1999</span>
+    <main>
+        <div class="card-section">
+            <div th:replace="fragments/card :: card"></div>
         </div>
 
-        <!-- Visa Card -->
-        <div class="visa-card">
-            <div class="card-content">
-                <div class="card-chip"></div>
-                <div class="card-bank">E-Pay Bank</div>
-                <h2 th:text="${account.accountId != null ?
-                        account.accountId.substring(0,4) + ' ' +
-                        account.accountId.substring(4,8) + ' ' +
-                        account.accountId.substring(8,12) + ' ' +
-                        account.accountId.substring(12,16)
-                        : 'XXXX XXXX XXXX XXXX'}">
-                </h2>
-                <div class="card-info">
-                    <span class="card-holder" th:text="${account.accountFirstName} + ' ' + ${account.accountLastName}">Jhon Doe</span>
-                    <span class="card-exp">Valid: 01/24 - 01/28</span>
-                </div>
-                <div class="card-mobile-info">
-                    <p>Name: <span th:text="${account.accountFirstName} + ' ' + ${account.accountLastName}">Jhon Doe</span></p>
-                    <p>Balance: Php <span th:text="${account.savingAccount}">10,000</span></p>
-                    <p>Number: <span th:text="${account.accountNumber}">09123456789</span></p>
-                    <p>Date: 03/01/1999</p>
-                </div>
-            </div>
+        <div class="button-section">
+            <div th:replace="fragments/btn-transaction :: transaction"></div>
         </div>
-    </div>
+    </main>
+
+    <footer>
+
+    </footer>
 </div>
 
-<!-- Transaction Button -->
-<div class="trans">
-    <button class="btn-csh"  id="openFormBtn">Transfer Money</button>
-    <button class="btn-csh"  id="openCshInBtn">Cash in</button>
+<div>
+    <div th:replace="fragments/overlay/cashIn :: cashInOverlay"></div>
+    <div th:replace="fragments/overlay/transfer :: transferOverlay"></div>
+    <div th:replace="fragments/overlay/transactionHistory :: transactionHistoryOverlay"></div>
 </div>
 
-<!--Transfer Money-->
-<div id="formOverlay" class="overlay">
-    <div class="modal-box">
-        <span id="closeFormBtn" class="close-btn">&times;</span>
-        <h1>Transfer Money</h1>
-
-        <!-- Flash messages -->
-        <div th:if="${success}" style="color: green;">[[${success}]]</div>
-        <div th:if="${error}" style="color: red;">[[${error}]]</div>
-
-        <form th:action="@{/transfer-money}" method="post">
-            <label for="tonumber">Recipient Number</label>
-            <input type="text" id="tonumber" name="tonumber" required><br><br>
-
-            <label for="amount">Amount</label>
-            <input type="number" id="amount" name="amount" min="1" required><br><br>
-
-            <button type="submit">Submit</button>
-        </form>
-    </div>
-</div>
-
-<!--Cash In-->
-<div id="cshInOverlay" class="overlay">
-    <div class="modal-box">
-        <span id="cshInClose" class="close-btn">&times;</span>
-        <h1>Cash In</h1>
-
-        <div th:if="${success}" style="color: green;">[[${success}]]</div>
-        <div th:if="${error}" style="color: red;">[[${error}]]</div>
-
-        <form th:action="@{/cash-in}" method="post">
-            <label for="amounts">Amount</label>
-            <input type="number" id="amounts" name="amounts" min="1" required><br><br>
-            <button type="submit">Submit</button>
-        </form>
-    </div>
-</div>
-
-<div class="transaction-log">
-    <h2>Transaction History</h2>
-
-    <table>
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Amount</th>
-            <th>Date</th>
-            <th>From</th>
-            <th>To</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="log : ${logs}">
-            <td th:text="${log.name}"></td>
-            <td>₱ <span th:text="${log.amount}"></span></td>
-            <td th:text="${log.dates}"></td>
-            <td th:text="${log.transferFromId != null ? log.transferFromId : '---'}"></td>
-            <td th:text="${log.transferToId != null ? log.transferToId : '---'}"></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-
-<!-- Scripts -->
 <script th:src="@{/js/navbar.js}"></script>
-<script th:src="@{/js/transparent.js}"></script>
+<script th:src="@{/js/overlay.js}"></script>
 </body>
 </html>
-
-

@@ -33,16 +33,13 @@ public class GetMappingController {
         Account account = (Account) session.getAttribute("account");
 
         if (account == null) {
-            return "redirect:/";
+            return "redirect:/index";
         }
 
-        // 🔥 FIX: use the ACCOUNT NUMBER (this is what your DB saves in accountId column)
         String idToSearch = account.getAccountNumber();
 
-        // Get logs
         List<ViewTransaction> logs = transactionRepository.findByAccountId(idToSearch);
 
-        // Send to HTML
         model.addAttribute("account", account);
         model.addAttribute("logs", logs);
 

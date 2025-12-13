@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="transactionHistoryOverlay">
+    <div id="transactionHistoryOverlay" class="overlay-history">
+        <div class="modal-history">
+            <span id="closeHistory" class="close-btn-history">&times;</span>
+            <h2>Transaction History</h2>
+
+            <div class="table-container">
+                <table class="history-table">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>From</th>
+                        <th>To</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="log : ${logs}">
+                        <td th:text="${log.name}"></td>
+                        <td>₱ <span th:text="${log.amount}"></span></td>
+                        <td th:text="${log.dates}"></td>
+                        <td th:text="${log.transferFromId != null ? log.transferFromId : '---'}"></td>
+                        <td th:text="${log.transferToId != null ? log.transferToId : '---'}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

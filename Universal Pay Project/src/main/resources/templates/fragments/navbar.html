@@ -3,28 +3,30 @@
 <body>
 <div th:fragment="navbar">
 
-    <nav class="navbar">
+    <nav class="navbars">
 
         <!-- LOGO -->
         <div class="logo">
-            <img th:src="@{/images/logo.png}" alt="E-Pay Logo">
+            <img th:src="@{/images/user.jpg}">
+            <h2 class="txt">Universal Pay</h2>
         </div>
 
         <!-- NAVIGATION -->
-        <ul class="nav-links">
-            <li><a th:href="@{/home}"><i class="fas fa-home"></i> Home</a></li>
-            <li><a th:href="@{/profile}"><i class="fas fa-user"></i> Profile</a></li>
+        <div class="menu">
+            <ul class="nav-links">
+                <li><a th:href="@{/home}"><i class="fas fa-home"></i> Home</a></li>
 
-            <!-- DROPDOWN MENU -->
-            <li class="dropdown">
-                <a href="#"><i class="fas fa-bars"></i> Menu</a>
+                <!-- DROPDOWN MENU -->
+                <li class="dropdown">
+                    <a href="#"><i class="fas fa-bars"></i> Menu</a>
 
-                <ul class="dropdown-content">
-                    <li><a th:href="@{/settings}"><i class="fas fa-gear"></i> Settings</a></li>
-                    <li><a th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-                </ul>
-            </li>
-        </ul>
+                    <ul class="dropdown-content">
+                        <li><a th:href="@{/settings}"><i class="fas fa-gear"></i> Settings</a></li>
+                        <li><a th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
     </nav>
 
 </div>

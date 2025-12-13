@@ -7,7 +7,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/register.css}">
 </head>
 <body>
 
@@ -19,14 +19,16 @@
         <p class="sub-text">Create your account</p>
 
         <form action="#" th:action="@{/register}" method="POST" th:object="${account}">
-            <div class="input-group">
-                <i class="fas fa-user"></i>
-                <input type="text" th:field="*{accountFirstName}" placeholder="First Name" required>
-            </div>
+            <div class="cols">
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" th:field="*{accountFirstName}" placeholder="First Name" required>
+                </div>
 
-            <div class="input-group">
-                <i class="fas fa-user"></i>
-                <input type="text" th:field="*{accountLastName}" placeholder="Last Name" required>
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" th:field="*{accountLastName}" placeholder="Last Name" required>
+                </div>
             </div>
 
             <div class="input-group">
