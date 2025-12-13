@@ -3,12 +3,14 @@ USE upay;
 
 CREATE TABLE users(
 	id INT PRIMARY KEY AUTO_INCREMENT,
+    role VARCHAR(20),
     accountId VARCHAR(16),
     fname VARCHAR(255),
     lname VARCHAR(255),
     email VARCHAR(255),
     number VARCHAR(11),
-    pin INT
+    pin INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 SELECT * FROM users;

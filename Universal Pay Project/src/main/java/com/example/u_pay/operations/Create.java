@@ -10,29 +10,27 @@ public class Create {
 
     public void register(Account acc) {
 
-        String userSql = "INSERT INTO users (accountId, fname, lname, email, number, pin) VALUES (?, ?, ?, ?, ?, ?)";
+        String userSql = "INSERT INTO users (accountId, role, fname, lname, email, number, pin) VALUES (?, ?, ?, ?, ?, ?, ?)";
         String savingsSql = "INSERT INTO user_savings (accountId, number, savings) VALUES (?, ?, ?)";
 
         try (Connection conn = Database.getConnection();
              PreparedStatement userStmt = conn.prepareStatement(userSql);
              PreparedStatement savingsStmt = conn.prepareStatement(savingsSql)) {
 
-            conn.setAutoCommit(false);  // Start transaction
+            conn.setAutoCommit(false);
 
-            // ----------------------------
+
             // INSERT INTO users
-            // ----------------------------
             userStmt.setString(1, acc.getAccountId());
-            userStmt.setString(2, acc.getAccountFirstName());
-            userStmt.setString(3, acc.getAccountLastName());
-            userStmt.setString(4, acc.getAccountEmail());
-            userStmt.setString(5, acc.getAccountNumber());
-            userStmt.setInt(6, acc.getAccountPin());
+            userStmt.setString(2, acc.getAccountRole());
+            userStmt.setString(3, acc.getAccountFirstName());
+            userStmt.setString(4, acc.getAccountLastName());
+            userStmt.setString(5, acc.getAccountEmail());
+            userStmt.setString(6, acc.getAccountNumber());
+            userStmt.setInt(7, acc.getAccountPin());
             userStmt.executeUpdate();
 
-            // ----------------------------
             // INSERT INTO user_savings   (default 0)
-            // ----------------------------
             savingsStmt.setString(1, acc.getAccountId());
             savingsStmt.setString(2, acc.getAccountNumber());
             savingsStmt.setDouble(3, 0.0);  // initial savings

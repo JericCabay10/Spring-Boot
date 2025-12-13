@@ -3,6 +3,7 @@ package com.example.u_pay.model;
 
 
 import com.example.u_pay.utils.IdGenerators;
+import com.example.u_pay.utils.RoleGenerators;
 import org.springframework.stereotype.Repository;
 
 import java.util.Random;
@@ -10,6 +11,7 @@ import java.util.Random;
 @Repository
 public class Account {
     private String accountId;
+    private String accountRole;
     private String accountFirstName;
     private String accountLastName;
     private String accountEmail;
@@ -27,15 +29,18 @@ public class Account {
 
     public Account() {
         this.accountId = IdGenerators.generateId();
+        this.accountRole = RoleGenerators.rolePick();
     }
-
-    static Random random = new Random();
 
     public void setAccountId(String accountId) {this.accountId = accountId;}
 
     public String getAccountId() {
         return this.accountId;
     }
+
+    public void setAccountRole(String role) { this.accountRole = accountRole; }
+
+    public String getAccountRole() { return this.accountRole; }
 
     public void setAccountFirstName(String accountFirstName) {
         this.accountFirstName = accountFirstName;

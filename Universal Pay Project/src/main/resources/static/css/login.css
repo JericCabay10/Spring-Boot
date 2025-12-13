@@ -6,52 +6,49 @@
 }
 
 body {
-    border: 1px solid black;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     background: linear-gradient(135deg, #4facfe, #00f2fe);
     padding: 20px;
-    overflow: hidden;
+    overflow-y: auto; /* allow scrolling on small screens */
 }
 
 .login-wrapper {
-    border: 1px solid blue;
-    width: auto;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 .login-card {
     background: white;
     padding: 40px 32px;
     border-radius: 18px;
-    width: 500px;
-    height: 90vh;
+    width: 100%;
+    max-width: 480px;  /* limit max width */
     box-shadow: 0 10px 35px rgba(0,0,0,0.25);
     text-align: center;
     animation: fadeIn .6s ease;
 }
 
 .logo {
-    font-size: 45px;
+    font-size: 40px;
     font-weight: bold;
     color: #0072ff;
-    margin-top: 20px;
+    margin-bottom: 15px;
 }
 
 .sub-text {
     color: #555;
-    font-size: 35px;
-    margin-bottom: 50px;
-    margin-top: 50px;
+    font-size: 18px;
+    margin-bottom: 40px;
 }
 
 .input-group {
     position: relative;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .input-group i {
@@ -64,10 +61,10 @@ body {
 
 .input-group input {
     width: 100%;
-    padding: 20px 13px 20px 50px;
+    padding: 15px 15px 15px 45px;
     border-radius: 10px;
     border: 1px solid #ccc;
-    font-size: 20px;
+    font-size: 16px;
     transition: 0.3s;
 }
 
@@ -79,7 +76,7 @@ body {
 
 button {
     width: 100%;
-    padding: 20px;
+    padding: 15px;
     background: #0072ff;
     color: white;
     border: none;
@@ -95,36 +92,40 @@ button:hover {
 }
 
 .register {
-    margin-top: 18px;
+    margin-top: 15px;
     font-size: 14px;
     color: #333;
-    font-size: 20px;
 }
 
 .register a {
     text-decoration: none;
     color: #0072ff;
     font-weight: bold;
-    font-size: 20px;
 }
 
 .register a:hover {
     text-decoration: underline;
 }
 
+/* ====== Responsive ====== */
 @media (max-width: 768px) {
     .login-card {
-        padding: 32px 28px;
-        max-width: 360px;
+        padding: 30px 25px;
     }
+    .logo { font-size: 35px; }
+    .sub-text { font-size: 16px; margin-bottom: 30px; }
+    .input-group input { font-size: 15px; padding: 12px 12px 12px 40px; }
+    button { font-size: 15px; padding: 12px; }
 }
 
 @media (max-width: 480px) {
     .login-card {
-        padding: 26px 22px;
+        padding: 25px 20px;
         max-width: 320px;
     }
-    .logo { font-size: 30px; }
-    button { font-size: 15px; }
-    .sub-text { font-size: 14px; }
+    .logo { font-size: 28px; }
+    .sub-text { font-size: 14px; margin-bottom: 25px; }
+    .input-group input { font-size: 14px; padding: 10px 10px 10px 38px; }
+    button { font-size: 14px; padding: 10px; }
+    .register { font-size: 13px; }
 }

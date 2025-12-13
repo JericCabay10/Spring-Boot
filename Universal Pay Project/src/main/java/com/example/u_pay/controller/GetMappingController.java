@@ -33,7 +33,7 @@ public class GetMappingController {
         Account account = (Account) session.getAttribute("account");
 
         if (account == null) {
-            return "redirect:/index";
+            return "redirect:/home";
         }
 
         String idToSearch = account.getAccountNumber();
